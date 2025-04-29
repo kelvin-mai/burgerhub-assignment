@@ -3,7 +3,7 @@ import { View, Image, Text, Pressable } from 'react-native';
 import type { CartItem } from '@/lib/types';
 import { Minus, Plus } from '@/lib/icons';
 import { formatUSD } from '@/lib/utils';
-import { useAppActions } from '@/store';
+import { useAppEffects } from '@/store';
 
 type ProductCartItemProps = CartItem;
 
@@ -11,7 +11,7 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
   product,
   quantity,
 }) => {
-  const { addToCart, removeFromCart } = useAppActions();
+  const { addToCart, removeFromCart } = useAppEffects();
   return (
     <View className='p-2 flex flex-row gap-2 border rounded-lg my-2 border-slate-400'>
       <Image

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { toast } from 'sonner-native';
 
 import { API_URL } from '@/lib/constants';
 import type { APIProduct, CartItem } from '@/lib/types';
@@ -26,6 +27,9 @@ type AppActions = {
 
 type AppEffects = {
   loadProducts(): Promise<void>;
+  addToCart(product: APIProduct): void;
+  removeFromCart(product: APIProduct): void;
+  clearCart(): void;
 };
 
 type AppStore = AppState & {
@@ -74,6 +78,36 @@ export const useAppStore = create<AppStore>((set, get) => ({
         console.log(e);
       } finally {
         set({ loading: false });
+      }
+    },
+    addToCart: (product) => {
+      const {
+        actions: { addToCart },
+      } = get();
+      addToCart(product);
+      toast.success('Success', {
+        description: `${product.name} has successfully been added to cart.`,
+      });
+    },
+    removeFromCart: (product) => {
+      const {
+        actions: { removeFromCart },
+      } = get();
+      removeFromCart(product);
+      toast.success('Success', {
+        description: `${product.name} has successfully been removed from cart.`,
+      });
+    },
+    clearCart: () => {
+      const {
+        cart,
+        actions: { clearCart },
+      } = get();
+      if (cart.length > 0) {
+        clearCart();
+        toast.success('Success', {
+          description: 'Cart has successfully been cleared.',
+        });
       }
     },
   },

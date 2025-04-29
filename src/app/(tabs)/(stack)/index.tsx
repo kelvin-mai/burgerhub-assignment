@@ -4,6 +4,7 @@ import { Tabs } from 'expo-router';
 
 import { ProductListItem } from '@/components/product';
 import { useAppEffects, useAppStore } from '@/store';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomePage() {
   const { products, loading } = useAppStore();
@@ -14,23 +15,25 @@ export default function HomePage() {
   }, [loadProducts]);
 
   return (
-    <ScrollView className='min-h-screen'>
-      <Tabs.Screen options={{ title: 'Home' }} />
-      {loading ? (
-        <View className='flex items-center justify-center h-screen'>
-          <ActivityIndicator />
-        </View>
-      ) : (
-        <FlatList
-          data={products}
-          renderItem={({ item }) => (
-            <ProductListItem
-              key={item.id}
-              product={item}
-            />
-          )}
-        />
-      )}
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView className='min-h-screen'>
+        <Tabs.Screen options={{ title: 'Home' }} />
+        {loading ? (
+          <View className='flex items-center justify-center h-screen'>
+            <ActivityIndicator />
+          </View>
+        ) : (
+          <FlatList
+            data={products}
+            renderItem={({ item }) => (
+              <ProductListItem
+                key={item.id}
+                product={item}
+              />
+            )}
+          />
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 }

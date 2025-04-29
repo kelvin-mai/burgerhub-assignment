@@ -1,23 +1,28 @@
-import { View, Image, Text, Pressable } from 'react-native';
+import { Image, Text, Pressable } from 'react-native';
 import { Redirect, Stack } from 'expo-router';
+import { toast } from 'sonner-native';
 
 import { useAppActions, useAppStore } from '@/store';
 import { formatUSD } from '@/lib/utils';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProductDetailScreen() {
   const { selected } = useAppStore();
   const { addToCart } = useAppActions();
 
   if (!selected) {
-    return <Redirect href='/+not-found' />;
+    return <Redirect href='/' />;
   }
 
   const handlePress = () => {
     addToCart(selected);
+    toast.success('Success', {
+      description: `${selected.name} has successfully been added to cart`,
+    });
   };
 
   return (
-    <View className='flex items-center justify-center'>
+    <SafeAreaView className='flex items-center justify-center'>
       <Stack.Screen options={{ title: selected.name }} />
       <Image
         source={{ uri: selected.image }}
@@ -34,6 +39,6 @@ export default function ProductDetailScreen() {
       >
         <Text className='text-white'>Add to cart</Text>
       </Pressable>
-    </View>
+    </SafeAreaView>
   );
 }
