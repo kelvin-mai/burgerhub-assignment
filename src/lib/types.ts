@@ -7,3 +7,8 @@ export type APIProduct = {
   image: string;
   price: number;
 };
+
+export type CartItem = {
+  product: APIProduct;
+  quantity: number;
+};

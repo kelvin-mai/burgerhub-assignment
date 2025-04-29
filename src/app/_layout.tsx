@@ -1,10 +1,14 @@
 import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import '../global.css';
 import { House, ShoppingCart } from '@/lib/icons';
+import { useAppStore } from '@/store';
 
 export default function RootLayout() {
+  const { cart } = useAppStore();
+  const cartCount = cart.reduce((acc, curr) => acc + curr.quantity, 0);
   return (
     <>
       <Tabs>
@@ -25,7 +29,7 @@ export default function RootLayout() {
           name='(tabs)/shopping-cart'
           options={{
             title: 'Shopping Cart',
-            tabBarBadge: 2,
+            tabBarBadge: cartCount,
             tabBarBadgeStyle: {},
             tabBarIcon: ({ color, size }) => (
               <ShoppingCart

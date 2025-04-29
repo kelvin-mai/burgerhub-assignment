@@ -1,34 +1,35 @@
-import { useEffect, useState } from 'react';
-import { Text, ScrollView } from 'react-native';
+import { useEffect } from 'react';
+import { ScrollView, ActivityIndicator, View, FlatList } from 'react-native';
 import { Tabs } from 'expo-router';
 
-import { ProductList } from '@/components/product/list';
+import { ProductListItem } from '@/components/product';
+import { useAppEffects, useAppStore } from '@/store';
 
 export default function HomePage() {
-  const [products, setProducts] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-  const loadBurgers = async () => {
-    const res = await fetch('https://burgerhub00.github.io/data/products.json');
-    const { products } = await res.json();
-    setProducts(products);
-    setLoaded(true);
-  };
+  const { products, loading } = useAppStore();
+  const { loadProducts } = useAppEffects();
 
   useEffect(() => {
-    loadBurgers();
-  }, []);
-
-  console.log('products', products);
+    loadProducts();
+  }, [loadProducts]);
 
   return (
     <ScrollView className='min-h-screen'>
       <Tabs.Screen options={{ title: 'Home' }} />
-      {loaded ? (
-        <ProductList products={products} />
+      {loading ? (
+        <View className='flex items-center justify-center h-screen'>
+          <ActivityIndicator />
+        </View>
       ) : (
-        <Text className='text-2xl'>
-          Edit app/index.tsx to edit this screen.
-        </Text>
+        <FlatList
+          data={products}
+          renderItem={({ item }) => (
+            <ProductListItem
+              key={item.id}
+              product={item}
+            />
+          )}
+        />
       )}
     </ScrollView>
   );

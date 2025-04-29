@@ -1,6 +1,11 @@
-import { ShoppingCart, type LucideIcon } from 'lucide-react-native';
+import {
+  House,
+  Minus,
+  Plus,
+  ShoppingCart,
+  type LucideIcon,
+} from 'lucide-react-native';
 import { cssInterop } from 'nativewind';
-import { House } from 'lucide-react-native';
 
 export const iconWithClassName = (icon: LucideIcon) => {
   cssInterop(icon, {
@@ -15,6 +20,8 @@ export const iconWithClassName = (icon: LucideIcon) => {
 };
 
 iconWithClassName(House);
+iconWithClassName(Minus);
+iconWithClassName(Plus);
 iconWithClassName(ShoppingCart);
 
-export { House, ShoppingCart };
+export { House, Minus, Plus, ShoppingCart };
