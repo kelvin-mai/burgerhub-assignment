@@ -1,10 +1,11 @@
-import { Image, Text, Pressable } from 'react-native';
+import { Image } from 'react-native';
 import { Redirect, Stack } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { toast } from 'sonner-native';
 
+import { Button, Text } from '@/components/ui';
 import { useAppActions, useAppStore } from '@/store';
 import { formatUSD } from '@/lib/utils';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProductDetailScreen() {
   const { selected } = useAppStore();
@@ -22,23 +23,25 @@ export default function ProductDetailScreen() {
   };
 
   return (
-    <SafeAreaView className='flex items-center justify-center'>
+    <SafeAreaView className='flex items-center justify-center min-h-full space-y-2 mx-4'>
       <Stack.Screen options={{ title: selected.name }} />
       <Image
         source={{ uri: selected.image }}
         className='rounded-lg'
         style={{ width: 200, height: 200 }}
       />
-      <Text>{selected.name}</Text>
-      <Text>{selected.calorie}</Text>
-      <Text className='text-center'>{selected.description}</Text>
-      <Text>{formatUSD(selected.price)}</Text>
-      <Pressable
-        className='rounded-lg bg-blue-500 px-4 py-2'
+      <Text className='font-bold text-2xl'>{selected.name}</Text>
+      <Text className='text-xl text-slate-700'>
+        Calories: {selected.calorie}
+      </Text>
+      <Text className='text-center text-slate-700'>{selected.description}</Text>
+      <Text className='text-xl font-bold'>{formatUSD(selected.price)}</Text>
+      <Button
+        className='rounded-lg bg-blue-500 px-4 py-2 text-white w-full font-bold'
         onPress={handlePress}
       >
-        <Text className='text-white'>Add to cart</Text>
-      </Pressable>
+        Add to cart
+      </Button>
     </SafeAreaView>
   );
 }

@@ -1,7 +1,8 @@
-import { Image, Text, View, TouchableOpacity } from 'react-native';
+import { Image, View, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import type { APIProduct } from '@/lib/types';
+import { Text } from '@/components/ui';
 import { useAppActions } from '@/store';
 import { formatUSD } from '@/lib/utils';
 
@@ -18,7 +19,7 @@ export const ProductListItem: React.FC<ProductItem> = ({ product }) => {
 
   return (
     <TouchableOpacity onPress={handlePress}>
-      <View className='p-2 flex flex-row gap-2 border rounded-lg mx-2 my-1 border-slate-400'>
+      <View className='p-2 flex flex-row gap-2 border rounded-lg mx-2 my-1 border-slate-400 drop-shadow-lg bg-white'>
         <Image
           source={{ uri: product.image }}
           className='rounded-lg'
@@ -26,8 +27,8 @@ export const ProductListItem: React.FC<ProductItem> = ({ product }) => {
         />
         <View className='flex-1'>
           <Text className='font-bold text-lg'>{product.name}</Text>
-          <Text>{product.description}</Text>
-          <Text>{formatUSD(product.price)}</Text>
+          <Text className='text-slate-700'>{product.description}</Text>
+          <Text className='text-slate-700'>{formatUSD(product.price)}</Text>
         </View>
       </View>
     </TouchableOpacity>

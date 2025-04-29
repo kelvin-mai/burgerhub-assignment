@@ -1,12 +1,12 @@
 import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Toaster } from 'sonner-native';
 
 import '../global.css';
 import { House, ShoppingCart } from '@/lib/icons';
 import { useAppStore } from '@/store';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function RootLayout() {
   const { cart } = useAppStore();
@@ -14,7 +14,10 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView>
-        <Tabs>
+        <Tabs
+          initialRouteName='(tabs)/(stack)'
+          screenOptions={{}}
+        >
           <Tabs.Screen
             name='(tabs)/(stack)'
             options={{

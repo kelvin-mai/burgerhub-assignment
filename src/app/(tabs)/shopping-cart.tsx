@@ -1,13 +1,15 @@
-import { ScrollView, FlatList, Text, Pressable } from 'react-native';
+import { ScrollView, FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { Text, Button } from '@/components/ui';
 import { useAppEffects, useAppStore } from '@/store';
 import { ProductCartItem } from '@/components/product';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { formatUSD } from '@/lib/utils';
 
 export default function ShoppingCartScreen() {
   const { cart } = useAppStore();
   const { clearCart } = useAppEffects();
-  const total = cart.reduce((acc, curr) => acc + curr.quantity, 0);
+  const total = cart.reduce((acc, curr) => acc + curr.product.price, 0);
   return (
     <SafeAreaView>
       <ScrollView className='min-h-screen p-4'>
@@ -21,13 +23,15 @@ export default function ShoppingCartScreen() {
             />
           )}
         />
-        <Text className='text-center my-2'>{total}</Text>
-        <Pressable
-          className='rounded-lg bg-slate-500 px-4 py-2'
+        <Text className='text-center text-xl my-2 font-bold'>
+          Total: {formatUSD(total)}
+        </Text>
+        <Button
+          className='rounded-lg bg-slate-500 px-4 py-2 text-white font-bold'
           onPress={clearCart}
         >
-          <Text className='text-white text-center'>Clear Cart</Text>
-        </Pressable>
+          Clear Cart
+        </Button>
       </ScrollView>
     </SafeAreaView>
   );
