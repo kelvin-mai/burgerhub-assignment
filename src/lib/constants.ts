@@ -4,20 +4,20 @@ export const API_URL = 'https://burgerhub00.github.io/data/products.json';
 
 export const NAV_THEME = {
   light: {
-    background: 'hsl(0 0% 100%)', // background
-    border: 'hsl(240 5.9% 90%)', // border
-    card: 'hsl(0 0% 100%)', // card
-    notification: 'hsl(0 84.2% 60.2%)', // destructive
-    primary: 'hsl(240 5.9% 10%)', // primary
-    text: 'hsl(240 10% 3.9%)', // foreground
+    background: '#f4f4f5', // zinc-100
+    border: '#a1a1aa', // zinc-400
+    card: 'white',
+    notification: '#f43f5e', // rose-500
+    primary: '#8b5cf6', // violet-500
+    text: '#0a0a0a', // zinc-950
   },
   dark: {
-    background: 'hsl(240 10% 3.9%)', // background
-    border: 'hsl(240 3.7% 15.9%)', // border
-    card: 'hsl(240 10% 3.9%)', // card
-    notification: 'hsl(0 72% 51%)', // destructive
-    primary: 'hsl(0 0% 98%)', // primary
-    text: 'hsl(0 0% 98%)', // foreground
+    background: '#0a0a0a', // zinc-950
+    border: '#52525b', // zinc-600
+    card: '#18181b', // zinc-900
+    notification: '#e11d48', // rose-600
+    primary: '#8b5cf6', // violet-500
+    text: '#f1f5f9', // zinc-100
   },
 };
 

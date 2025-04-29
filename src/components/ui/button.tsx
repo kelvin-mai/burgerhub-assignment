@@ -13,7 +13,8 @@ const Button = React.forwardRef<
   return (
     <TextClassContext.Provider
       value={cn(
-        `web:whitespace-nowrap web:transition-colors web:pointer-events-none`,
+        `web:whitespace-nowrap web:transition-colors web:pointer-events-none
+        text-zinc-100 font-bold text-lg`,
       )}
     >
       <Pressable

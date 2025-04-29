@@ -13,7 +13,11 @@ const Text = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        className={cn('web:select-text', textClass, className)}
+        className={cn(
+          'web:select-text text-zinc-950 dark:text-zinc-100',
+          textClass,
+          className,
+        )}
         ref={ref}
         {...props}
       />

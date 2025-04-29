@@ -15,22 +15,24 @@ export default function HomePage() {
   }, [loadProducts]);
 
   return (
-    <SafeAreaView className='min-h-full'>
+    <SafeAreaView edges={['bottom']}>
       <Tabs.Screen options={{ title: 'Home' }} />
       {loading ? (
-        <View className='flex items-center justify-center h-screen'>
+        <View className='items-center justify-center h-screen'>
           <ActivityIndicator />
         </View>
       ) : (
-        <FlatList
-          data={products}
-          renderItem={({ item }) => (
-            <ProductListItem
-              key={item.id}
-              product={item}
-            />
-          )}
-        />
+        <View className='px-2 pt-2'>
+          <FlatList
+            data={products}
+            renderItem={({ item }) => (
+              <ProductListItem
+                key={item.id}
+                product={item}
+              />
+            )}
+          />
+        </View>
       )}
     </SafeAreaView>
   );

@@ -27,13 +27,13 @@ export function ThemeToggle() {
         >
           {colorScheme === 'dark' ? (
             <MoonStar
-              className='text-black dark:text-white'
+              className='text-violet-500'
               size={23}
               strokeWidth={1.25}
             />
           ) : (
             <Sun
-              className='text-black dark:text-white'
+              className='text-violet-500'
               size={24}
               strokeWidth={1.25}
             />

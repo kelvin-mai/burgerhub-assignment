@@ -23,24 +23,29 @@ export default function ProductDetailScreen() {
   };
 
   return (
-    <SafeAreaView className='flex items-center justify-center min-h-full space-y-2 mx-4'>
+    <SafeAreaView
+      edges={['bottom']}
+      className='items-center justify-center min-h-full gap-2 mx-4'
+    >
       <Stack.Screen options={{ title: selected.name }} />
       <Image
         source={{ uri: selected.image }}
-        className='rounded-lg'
+        className='rounded-lg dark:border dark:border-zinc-600 drop-shadow-lg'
         style={{ width: 200, height: 200 }}
       />
       <Text className='font-bold text-2xl'>{selected.name}</Text>
-      <Text className='text-xl text-slate-700'>
+      <Text className='text-xl text-zinc-500 dark:text-zinc-400'>
         Calories: {selected.calorie}
       </Text>
-      <Text className='text-center text-slate-700'>{selected.description}</Text>
+      <Text className='text-center text-zinc-500 dark:text-zinc-400'>
+        {selected.description}
+      </Text>
       <Text className='text-xl font-bold'>{formatUSD(selected.price)}</Text>
       <Button
-        className='rounded-lg bg-blue-500 px-4 py-2 w-full'
+        className='rounded-lg bg-violet-500 px-4 py-2 w-full'
         onPress={handlePress}
       >
-        <Text className='text-white font-bold'>Add to cart</Text>
+        <Text className='text-zinc-100 font-bold'>Add to cart</Text>
       </Button>
     </SafeAreaView>
   );

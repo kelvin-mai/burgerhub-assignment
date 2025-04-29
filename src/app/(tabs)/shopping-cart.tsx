@@ -11,26 +11,39 @@ export default function ShoppingCartScreen() {
   const { clearCart } = useAppEffects();
   const total = cart.reduce((acc, curr) => acc + curr.product.price, 0);
   return (
-    <SafeAreaView className='px-4'>
-      <FlatList
-        data={cart}
-        renderItem={({ item }) => (
-          <ProductCartItem
-            key={item.product.id}
-            product={item.product}
-            quantity={item.quantity}
-          />
+    <SafeAreaView edges={['bottom']}>
+      <View className='px-2 pt-2'>
+        {cart.length > 0 ? (
+          <>
+            <FlatList
+              data={cart}
+              renderItem={({ item }) => (
+                <ProductCartItem
+                  key={item.product.id}
+                  product={item.product}
+                  quantity={item.quantity}
+                />
+              )}
+            />
+            <Text className='text-center text-xl my-2 font-bold'>
+              Total: {formatUSD(total)}
+            </Text>
+            <Button
+              onPress={clearCart}
+              className='bg-zinc-600'
+            >
+              <Text>Clear Cart</Text>
+            </Button>
+          </>
+        ) : (
+          <View className='flex items-center justify-center min-h-full'>
+            <Text className='text-lg text-center'>
+              You currently have no items in your cart. Please go back to the
+              menu and add some items to continue.
+            </Text>
+          </View>
         )}
-      />
-      <Text className='text-center text-xl my-2 font-bold'>
-        Total: {formatUSD(total)}
-      </Text>
-      <Button
-        className='rounded-lg bg-slate-500 px-4 py-2 font-bold'
-        onPress={clearCart}
-      >
-        <Text className='text-white font-bold'>Clear Cart</Text>
-      </Button>
+      </View>
     </SafeAreaView>
   );
 }

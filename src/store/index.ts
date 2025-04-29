@@ -98,11 +98,11 @@ export const useAppStore = create<AppStore>((set, get) => ({
     },
     subtractFromCart: (product) => {
       const {
-        actions: { removeFromCart },
+        actions: { subtractFromCart },
       } = get();
-      removeFromCart(product);
+      subtractFromCart(product);
       toast.success('Success', {
-        description: `${product.name} has successfully been removed from cart.`,
+        description: `${product.name} has successfully been subtracted from cart.`,
       });
     },
     removeFromCart: (product) => {

@@ -2,7 +2,7 @@ import { View, Image } from 'react-native';
 
 import type { CartItem } from '@/lib/types';
 import { Minus, Plus } from '@/lib/icons';
-import { Text, Button } from '@/components/ui';
+import { Text, Button, Card } from '@/components/ui';
 import { formatUSD } from '@/lib/utils';
 import { useAppEffects } from '@/store';
 
@@ -15,24 +15,26 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
   const { addToCart, subtractFromCart, removeFromCart } = useAppEffects();
   const subtotal = product.price * quantity;
   return (
-    <View className='p-2 flex border rounded-lg my-2 border-slate-400 drop-shadow-lg bg-white'>
+    <Card className='p-2 my-2'>
       <View className='flex-row gap-2'>
         <Image
           source={{ uri: product.image }}
-          className='rounded-lg'
+          className='rounded-lg dark:border dark:border-zinc-600 drop-shadow-lg'
           style={{ width: 120, height: 120 }}
         />
         <View className='flex-1 justify-between'>
           <View>
             <Text className='font-bold text-lg'>{product.name}</Text>
-            <Text className='text-slate-600'>Quantity: {quantity}</Text>
-            <Text className='text-slate-600'>
+            <Text className='text-zinc-500 dark:text-zinc-400'>
+              Quantity: {quantity}
+            </Text>
+            <Text className='text-zinc-500 dark:text-zinc-400'>
               Price: {formatUSD(product.price)}
             </Text>
           </View>
-          <View className='gap-2 flex flex-row mt-2'>
+          <View className='gap-2 flex-row mt-2'>
             <Button
-              className='bg-blue-500 grow items-center justify-center'
+              className='bg-indigo-500 grow items-center justify-center'
               onPress={() => addToCart(product)}
             >
               <Plus
@@ -41,7 +43,7 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
               />
             </Button>
             <Button
-              className='bg-blue-500 grow items-center justify-center'
+              className='bg-indigo-500 grow items-center justify-center'
               onPress={() => subtractFromCart(product)}
             >
               <Minus
@@ -52,19 +54,17 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
           </View>
         </View>
       </View>
-      <View className='space-y-2'>
-        <Text className='text-slate-700 text-lg'>
+      <View className='gap-2 mt-2'>
+        <Text className='text-zinc-500 text-xl'>
           Subtotal: {formatUSD(subtotal)}
         </Text>
-        <Button className='rounded-lg bg-red-500'>
-          <Text
-            className='text-white font-bold'
-            onPress={() => removeFromCart(product)}
-          >
-            Remove
-          </Text>
+        <Button
+          className='rounded-lg bg-rose-500'
+          onPress={() => removeFromCart(product)}
+        >
+          <Text>Remove</Text>
         </Button>
       </View>
-    </View>
+    </Card>
   );
 };

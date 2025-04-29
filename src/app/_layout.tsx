@@ -86,8 +86,16 @@ export default function RootLayout() {
           </Tabs>
           <Toaster
             position='top-center'
-            duration={2000}
+            duration={1500}
             closeButton
+            toastOptions={{
+              style: {
+                backgroundColor:
+                  colorScheme === 'dark'
+                    ? DARK_THEME.colors.card
+                    : LIGHT_THEME.colors.card,
+              },
+            }}
           />
         </GestureHandlerRootView>
       </SafeAreaProvider>
