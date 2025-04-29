@@ -1,5 +1,6 @@
-import { View, FlatList } from 'react-native';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Animated, { LinearTransition } from 'react-native-reanimated';
 
 import { Text, Button } from '@/components/ui';
 import { useAppEffects, useAppStore } from '@/store';
@@ -15,8 +16,9 @@ export default function ShoppingCartScreen() {
       <View className='px-2 pt-2'>
         {cart.length > 0 ? (
           <>
-            <FlatList
+            <Animated.FlatList
               data={cart}
+              itemLayoutAnimation={LinearTransition}
               renderItem={({ item }) => (
                 <ProductCartItem
                   key={item.product.id}
