@@ -37,10 +37,10 @@ export default function ProductDetailScreen() {
       <Text className='text-center text-slate-700'>{selected.description}</Text>
       <Text className='text-xl font-bold'>{formatUSD(selected.price)}</Text>
       <Button
-        className='rounded-lg bg-blue-500 px-4 py-2 text-white w-full font-bold'
+        className='rounded-lg bg-blue-500 px-4 py-2 w-full'
         onPress={handlePress}
       >
-        Add to cart
+        <Text className='text-white font-bold'>Add to cart</Text>
       </Button>
     </SafeAreaView>
   );

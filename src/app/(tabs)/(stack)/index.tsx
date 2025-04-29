@@ -15,25 +15,23 @@ export default function HomePage() {
   }, [loadProducts]);
 
   return (
-    <SafeAreaView>
-      <ScrollView className='min-h-screen'>
-        <Tabs.Screen options={{ title: 'Home' }} />
-        {loading ? (
-          <View className='flex items-center justify-center h-screen'>
-            <ActivityIndicator />
-          </View>
-        ) : (
-          <FlatList
-            data={products}
-            renderItem={({ item }) => (
-              <ProductListItem
-                key={item.id}
-                product={item}
-              />
-            )}
-          />
-        )}
-      </ScrollView>
+    <SafeAreaView className='min-h-full'>
+      <Tabs.Screen options={{ title: 'Home' }} />
+      {loading ? (
+        <View className='flex items-center justify-center h-screen'>
+          <ActivityIndicator />
+        </View>
+      ) : (
+        <FlatList
+          data={products}
+          renderItem={({ item }) => (
+            <ProductListItem
+              key={item.id}
+              product={item}
+            />
+          )}
+        />
+      )}
     </SafeAreaView>
   );
 }

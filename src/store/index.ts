@@ -21,6 +21,7 @@ const initialState: AppState = {
 type AppActions = {
   setSelectedProduct(product: APIProduct): void;
   addToCart(product: APIProduct): void;
+  subtractFromCart(product: APIProduct): void;
   removeFromCart(product: APIProduct): void;
   clearCart(): void;
 };
@@ -28,6 +29,7 @@ type AppActions = {
 type AppEffects = {
   loadProducts(): Promise<void>;
   addToCart(product: APIProduct): void;
+  subtractFromCart(product: APIProduct): void;
   removeFromCart(product: APIProduct): void;
   clearCart(): void;
 };
@@ -52,7 +54,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
             )
           : [...state.cart, { product, quantity: 1 }],
       })),
-    removeFromCart: (product) =>
+    subtractFromCart: (product) =>
       set((state) => ({
         ...state,
         cart: state.cart.find(
@@ -64,6 +66,11 @@ export const useAppStore = create<AppStore>((set, get) => ({
                 ? { ...c, quantity: c.quantity - 1 }
                 : c,
             ),
+      })),
+    removeFromCart: (product) =>
+      set((state) => ({
+        ...state,
+        cart: state.cart.filter((c) => c.product.id !== product.id),
       })),
     clearCart: () => set({ cart: [] }),
   },
@@ -87,6 +94,15 @@ export const useAppStore = create<AppStore>((set, get) => ({
       addToCart(product);
       toast.success('Success', {
         description: `${product.name} has successfully been added to cart.`,
+      });
+    },
+    subtractFromCart: (product) => {
+      const {
+        actions: { removeFromCart },
+      } = get();
+      removeFromCart(product);
+      toast.success('Success', {
+        description: `${product.name} has successfully been removed from cart.`,
       });
     },
     removeFromCart: (product) => {

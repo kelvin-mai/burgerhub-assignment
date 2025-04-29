@@ -12,7 +12,7 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
   product,
   quantity,
 }) => {
-  const { addToCart, removeFromCart } = useAppEffects();
+  const { addToCart, subtractFromCart, removeFromCart } = useAppEffects();
   const subtotal = product.price * quantity;
   return (
     <View className='p-2 flex border rounded-lg my-2 border-slate-400 drop-shadow-lg bg-white'>
@@ -42,7 +42,7 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
             </Button>
             <Button
               className='bg-blue-500 grow items-center justify-center'
-              onPress={() => removeFromCart(product)}
+              onPress={() => subtractFromCart(product)}
             >
               <Minus
                 color='white'
@@ -53,11 +53,16 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
         </View>
       </View>
       <View className='space-y-2'>
-        <View className='text-slate-700 text-lg'>
+        <Text className='text-slate-700 text-lg'>
           Subtotal: {formatUSD(subtotal)}
-        </View>
-        <Button className='rounded-lg bg-red-500 text-white font-bold'>
-          Remove
+        </Text>
+        <Button className='rounded-lg bg-red-500'>
+          <Text
+            className='text-white font-bold'
+            onPress={() => removeFromCart(product)}
+          >
+            Remove
+          </Text>
         </Button>
       </View>
     </View>
