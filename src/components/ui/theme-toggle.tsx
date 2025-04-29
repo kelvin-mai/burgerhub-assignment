@@ -1,0 +1,45 @@
+import { Pressable, View } from 'react-native';
+
+import { MoonStar, Sun } from '@/lib/icons';
+import { cn, setAndroidNavigationBar } from '@/lib/utils';
+import { useColorScheme } from '@/hooks';
+
+export function ThemeToggle() {
+  const { colorScheme, setColorScheme } = useColorScheme();
+
+  const toggleColorScheme = () => {
+    const newTheme = colorScheme === 'dark' ? 'light' : 'dark';
+    setColorScheme(newTheme);
+    setAndroidNavigationBar(newTheme);
+  };
+
+  return (
+    <Pressable
+      onPress={toggleColorScheme}
+      className='web:ring-offset-background web:transition-colors web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2'
+    >
+      {({ pressed }) => (
+        <View
+          className={cn(
+            'flex-1 aspect-square pt-0.5 justify-center items-start web:px-5',
+            pressed && 'opacity-70',
+          )}
+        >
+          {colorScheme === 'dark' ? (
+            <MoonStar
+              className='text-black dark:text-white'
+              size={23}
+              strokeWidth={1.25}
+            />
+          ) : (
+            <Sun
+              className='text-black dark:text-white'
+              size={24}
+              strokeWidth={1.25}
+            />
+          )}
+        </View>
+      )}
+    </Pressable>
+  );
+}
