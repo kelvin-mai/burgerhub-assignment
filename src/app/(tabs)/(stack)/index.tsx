@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, ScrollView } from 'react-native';
+import { Tabs } from 'expo-router';
 
 import { ProductList } from '@/components/product/list';
 
-export default function Index() {
+export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const loadBurgers = async () => {
@@ -21,6 +22,7 @@ export default function Index() {
 
   return (
     <ScrollView className='min-h-screen'>
+      <Tabs.Screen options={{ title: 'Home' }} />
       {loaded ? (
         <ProductList products={products} />
       ) : (
