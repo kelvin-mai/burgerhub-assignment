@@ -10,7 +10,10 @@ import { formatUSD } from '@/lib/utils';
 export default function ShoppingCartScreen() {
   const { cart } = useAppStore();
   const { clearCart } = useAppEffects();
-  const total = cart.reduce((acc, curr) => acc + curr.product.price, 0);
+  const total = cart.reduce(
+    (acc, curr) => acc + curr.product.price * curr.quantity,
+    0,
+  );
   return (
     <SafeAreaView edges={['bottom']}>
       <View className='px-2 pt-2'>
@@ -19,6 +22,7 @@ export default function ShoppingCartScreen() {
             <Animated.FlatList
               data={cart}
               itemLayoutAnimation={LinearTransition}
+              testID='shopping-cart-screen-list'
               renderItem={({ item }) => (
                 <ProductCartItem
                   key={item.product.id}
@@ -27,19 +31,26 @@ export default function ShoppingCartScreen() {
                 />
               )}
             />
-            <Text className='text-center text-xl my-2 font-bold'>
+            <Text
+              className='text-center text-xl my-2 font-bold'
+              testID='shopping-cart-screen-total'
+            >
               Total: {formatUSD(total)}
             </Text>
             <Button
               onPress={clearCart}
               className='bg-zinc-600'
+              testID='shopping-cart-screen-clear-cart-button'
             >
               <Text>Clear Cart</Text>
             </Button>
           </>
         ) : (
           <View className='flex items-center justify-center min-h-full'>
-            <Text className='text-lg text-center'>
+            <Text
+              className='text-lg text-center'
+              testID='shopping-cart-screen-no-cart-text'
+            >
               You currently have no items in your cart. Please go back to the
               menu and add some items to continue.
             </Text>

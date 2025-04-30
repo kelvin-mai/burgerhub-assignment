@@ -18,7 +18,10 @@ export const ProductListItem: React.FC<ProductItem> = ({ product }) => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity
+      onPress={handlePress}
+      testID='product-list-item-pressable'
+    >
       <Card className='p-2 flex-row gap-2 my-2'>
         <Image
           source={{ uri: product.image }}

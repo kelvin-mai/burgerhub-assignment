@@ -4,7 +4,7 @@ import { toast } from 'sonner-native';
 import { API_URL } from '@/lib/constants';
 import type { APIProduct, CartItem } from '@/lib/types';
 
-type AppState = {
+export type AppState = {
   loading: boolean;
   products: APIProduct[];
   selected: APIProduct | null;
@@ -19,6 +19,9 @@ const initialState: AppState = {
 };
 
 type AppActions = {
+  reset(): void;
+  setLoading(loading: boolean): void;
+  setProducts(products: APIProduct[]): void;
   setSelectedProduct(product: APIProduct): void;
   addToCart(product: APIProduct): void;
   subtractFromCart(product: APIProduct): void;
@@ -42,6 +45,11 @@ type AppStore = AppState & {
 export const useAppStore = create<AppStore>((set, get) => ({
   ...initialState,
   actions: {
+    reset: () => {
+      set(initialState);
+    },
+    setLoading: (loading) => set({ loading }),
+    setProducts: (products) => set({ products }),
     setSelectedProduct: (product) => set({ selected: product }),
     addToCart: (product) =>
       set((state) => ({
@@ -76,15 +84,18 @@ export const useAppStore = create<AppStore>((set, get) => ({
   },
   effects: {
     loadProducts: async () => {
-      set({ loading: true });
+      const {
+        actions: { setLoading, setProducts },
+      } = get();
+      setLoading(true);
       try {
         const res = await fetch(API_URL);
         const { products }: { products: APIProduct[] } = await res.json();
-        set({ products });
+        setProducts(products);
       } catch (e) {
         console.log(e);
       } finally {
-        set({ loading: false });
+        setLoading(false);
       }
     },
     addToCart: (product) => {

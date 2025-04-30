@@ -21,14 +21,26 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
           source={{ uri: product.image }}
           className='rounded-lg dark:border dark:border-zinc-600 drop-shadow-lg'
           style={{ width: 120, height: 120 }}
+          testID='product-cart-item-image'
         />
         <View className='flex-1 justify-between'>
           <View>
-            <Text className='font-bold text-lg'>{product.name}</Text>
-            <Text className='text-zinc-500 dark:text-zinc-400'>
+            <Text
+              className='font-bold text-lg'
+              testID='product-cart-item-name'
+            >
+              {product.name}
+            </Text>
+            <Text
+              className='text-zinc-500 dark:text-zinc-400'
+              testID='product-cart-item-quantity'
+            >
               Quantity: {quantity}
             </Text>
-            <Text className='text-zinc-500 dark:text-zinc-400'>
+            <Text
+              className='text-zinc-500 dark:text-zinc-400'
+              testID='product-cart-item-price'
+            >
               Price: {formatUSD(product.price)}
             </Text>
           </View>
@@ -55,7 +67,10 @@ export const ProductCartItem: React.FC<ProductCartItemProps> = ({
         </View>
       </View>
       <View className='gap-2 mt-2'>
-        <Text className='text-zinc-500 text-xl'>
+        <Text
+          className='text-zinc-500 text-xl'
+          testID='product-cart-item-subtotal'
+        >
           Subtotal: {formatUSD(subtotal)}
         </Text>
         <Button

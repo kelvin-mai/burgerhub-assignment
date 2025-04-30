@@ -32,18 +32,36 @@ export default function ProductDetailScreen() {
         source={{ uri: selected.image }}
         className='rounded-lg dark:border dark:border-zinc-600 drop-shadow-lg'
         style={{ width: 200, height: 200 }}
+        testID='product-details-screen-image'
       />
-      <Text className='font-bold text-2xl'>{selected.name}</Text>
-      <Text className='text-xl text-zinc-500 dark:text-zinc-400'>
+      <Text
+        className='font-bold text-2xl'
+        testID='product-details-screen-name'
+      >
+        {selected.name}
+      </Text>
+      <Text
+        className='text-xl text-zinc-500 dark:text-zinc-400'
+        testID='product-details-screen-calories'
+      >
         Calories: {selected.calorie}
       </Text>
-      <Text className='text-center text-zinc-500 dark:text-zinc-400'>
+      <Text
+        className='text-center text-zinc-500 dark:text-zinc-400'
+        testID='product-details-screen-description'
+      >
         {selected.description}
       </Text>
-      <Text className='text-xl font-bold'>{formatUSD(selected.price)}</Text>
+      <Text
+        className='text-xl font-bold'
+        testID='product-details-screen-price'
+      >
+        {formatUSD(selected.price)}
+      </Text>
       <Button
         className='rounded-lg bg-violet-500 px-4 py-2 w-full'
         onPress={handlePress}
+        testID='product-details-screen-button'
       >
         <Text className='text-zinc-100 font-bold'>Add to cart</Text>
       </Button>
