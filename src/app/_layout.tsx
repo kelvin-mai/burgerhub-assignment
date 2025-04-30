@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ThemeProvider } from '@react-navigation/native';
 import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -10,7 +11,6 @@ import { House, ShoppingCart } from '@/lib/icons';
 import { useAppStore } from '@/store';
 import { useColorScheme } from '@/hooks';
 import { Platform } from 'react-native';
-import { ThemeProvider } from '@react-navigation/native';
 import { DARK_THEME, LIGHT_THEME } from '@/lib/constants';
 import { ThemeToggle } from '@/components/ui';
 

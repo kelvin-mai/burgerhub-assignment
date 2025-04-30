@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { ActivityIndicator, View, FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ProductListItem } from '@/components/product';
 import { Text } from '@/components/ui';
 import { useAppEffects, useAppStore } from '@/store';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   const { products, loading } = useAppStore();

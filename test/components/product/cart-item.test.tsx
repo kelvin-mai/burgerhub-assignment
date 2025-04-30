@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, userEvent } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 import { ProductCartItem } from '@/components/product';
 import { formatUSD } from '@/lib/utils';
