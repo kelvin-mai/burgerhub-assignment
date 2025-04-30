@@ -1,50 +1,46 @@
-# Welcome to your Expo app 👋
+# Burgerhub Assignment
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<div style="display: flex; gap: 8px">
+   <img src='./docs/main.png' alt='Main screen' width='200' />
+   <img src='./docs/details.png' alt='Details screen' width=200 />
+   <img src='./docs/dark.png' alt='Dark mode available' width=200 />
+</div>
+
+## Tools and Technologies Used
+
+### App
+
+- [Expo 52](https://expo.dev/) - react native framework
+- [React Native](https://reactnative.dev/) - ui rendering library
+- [React Native Reusables](https://rnr-docs.vercel.app/getting-started/introduction/) - reusable components for react native inspired by shadcn
+- [NativeWind](https://www.nativewind.dev/) - tailwindcss for react native
+- [Zustand](https://zustand-demo.pmnd.rs/) - state management
+
+### Testing
+
+- [Jest](https://jestjs.io/) - javascript test framework
+- [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro/) - companion testing library for testing react and react native
 
 ## Get started
 
+### Prerequisites
+
+- Node.js and pnpm installed on your system
+
 1. Install dependencies
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
 ```bash
-npm run reset-project
+pnpm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Test the app
 
-## Learn more
+```bash
+pnpm run test
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Start the app
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+pnpm run start
+```

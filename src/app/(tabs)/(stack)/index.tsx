@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { ActivityIndicator, View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Stack } from 'expo-router';
 
 import { ProductListItem } from '@/components/product';
 import { Text } from '@/components/ui';
@@ -16,6 +17,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView edges={['bottom']}>
+      <Stack.Screen options={{ title: 'Home' }} />
       {loading ? (
         <View className='items-center justify-center h-screen'>
           <ActivityIndicator testID='home-loading-indicator' />

@@ -1,6 +1,5 @@
-import { View } from 'react-native';
+import { View, SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Animated, { LinearTransition } from 'react-native-reanimated';
 
 import { Text, Button } from '@/components/ui';
 import { useAppEffects, useAppStore } from '@/store';
@@ -18,33 +17,34 @@ export default function ShoppingCartScreen() {
     <SafeAreaView edges={['bottom']}>
       <View className='px-2 pt-2'>
         {cart.length > 0 ? (
-          <>
-            <Animated.FlatList
-              data={cart}
-              itemLayoutAnimation={LinearTransition}
-              testID='shopping-cart-screen-list'
-              renderItem={({ item }) => (
-                <ProductCartItem
-                  key={item.product.id}
-                  product={item.product}
-                  quantity={item.quantity}
-                />
-              )}
-            />
-            <Text
-              className='text-center text-xl my-2 font-bold'
-              testID='shopping-cart-screen-total'
-            >
-              Total: {formatUSD(total)}
-            </Text>
-            <Button
-              onPress={clearCart}
-              className='bg-zinc-600'
-              testID='shopping-cart-screen-clear-cart-button'
-            >
-              <Text>Clear Cart</Text>
-            </Button>
-          </>
+          <SectionList
+            sections={[{ data: cart }]}
+            testID='shopping-cart-screen-list'
+            renderItem={({ item }) => (
+              <ProductCartItem
+                key={item.product.id}
+                product={item.product}
+                quantity={item.quantity}
+              />
+            )}
+            renderSectionFooter={() => (
+              <View className='py-2 mb-2'>
+                <Text
+                  className='text-center text-xl my-2 font-bold'
+                  testID='shopping-cart-screen-total'
+                >
+                  Total: {formatUSD(total)}
+                </Text>
+                <Button
+                  onPress={clearCart}
+                  className='bg-zinc-600'
+                  testID='shopping-cart-screen-clear-cart-button'
+                >
+                  <Text>Clear Cart</Text>
+                </Button>
+              </View>
+            )}
+          />
         ) : (
           <View className='flex items-center justify-center min-h-full'>
             <Text

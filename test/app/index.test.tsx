@@ -7,6 +7,15 @@ import HomeScreen from '@/app/(tabs)/(stack)';
 import { useAppStore } from '@/store';
 import { mockProduct, mockProduct2 } from '../fixtures';
 
+jest.mock('expo-router', () => ({
+  useRouter: () => ({
+    navigate: jest.fn(),
+  }),
+  Stack: {
+    Screen: ({ children }: React.PropsWithChildren) => <>{children}</>,
+  },
+}));
+
 jest.mock('@/store', () => ({
   ...jest.requireActual('@/store'),
   useAppEffects: () => ({
